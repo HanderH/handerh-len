@@ -1,8 +1,14 @@
-package com.handerh.distrublock.reids;
+package com.handerh.distrublock.reidsson;
 
+import com.handerh.distrublock.reids.RedisLock;
+import org.redisson.Redisson;
+import org.redisson.config.Config;
 import redis.clients.jedis.Jedis;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -12,8 +18,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * @date 2020/12/06
  */
 public class TestLock {
-
-//    private static final Jedis jedis = new Jedis("localhost");
 
     private static Integer total = 1000;
 
@@ -32,13 +36,15 @@ public class TestLock {
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(THREOLD, THREOLD, 10, TimeUnit.SECONDS, blockingQueue);
 
         CountDownLatch countDownLatch = new CountDownLatch(THREOLD);
+        Config config = new Config();
 
+        config.useSingleServer().setAddress("redis://127.0.0.1:6379").setConnectionPoolSize(30).setConnectionMinimumIdleSize(10);
+        RedisionLockUtil redisionLockUtil = new  RedisionLockUtil();
+        redisionLockUtil.setRedisson(Redisson.create(config));
         for (int i=0;i<THREOLD;i++){
             threadPoolExecutor.execute(()->{
 
-                String requestId = String.valueOf(Thread.currentThread().getId());
-
-                boolean lock = RedisLock.tryGetDistributedLock(new Jedis("localhost"), LOCK, requestId, 600);
+                boolean lock = RedisionLockUtil.tryLock(LOCK, TimeUnit.SECONDS, 3, 20);
                 // 如果获取到锁
                 if (lock){
                     sum.getAndSet(sum.get() + 1);
@@ -47,7 +53,7 @@ public class TestLock {
                         total--;
                     }
                 }
-                RedisLock.releaseDistributedLock(new Jedis("localhost"),LOCK,requestId);
+                RedisionLockUtil.unlock(LOCK);
                 countDownLatch.countDown();
             });
         }

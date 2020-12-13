@@ -1,8 +1,6 @@
 package com.handerh.distrublock.reids;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.params.SetParams;
 
 import java.util.Collections;
 
@@ -17,7 +15,11 @@ public class RedisLock {
     private static final Long RELEASE_SUCCESS = 1L;
 
     private static final String SET_IF_NOT_EXIST = "NX";
-    private static final String SET_WITH_EXPIRE_TIME = "PX";
+
+    private static final String SET_WITH_EXPIRE_TIME = "EX";
+
+    // 获取锁的等待时间 10s
+    private static long timeout = 1000*10;
 
     /**
      *
@@ -29,6 +31,7 @@ public class RedisLock {
      */
     public static boolean tryGetDistributedLock(Jedis jedis, String lockKey, String requestId, int expireTime){
 
+        long start = System.currentTimeMillis();
         /**
          * 1. nx 即当key不存在时，我们进行set操作；若key已经存在，则不做任何操作
          * 2. ex 给这个key加一个过期的设置
@@ -36,13 +39,14 @@ public class RedisLock {
          * 执行上面的set()方法就只会导致两种结果：
          *      1. 当前没有锁（key不存在），那么就进行加锁操作，并对锁设置个有效期，同时value表示加锁的客户端。
          *      2. 已有锁存在，不做任何操作。
+         *在timeout时间内一直尝试获取锁
          */
-        String result = jedis.set(lockKey, requestId, new SetParams().nx().ex(expireTime));
-
-        // 新版的jedis客户端不不存在这种set方法
-        // String result = jedis.set(lockKey, requestId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
-        if (LOCK_SUCCESS.equals(result)){
-            return true;
+        while(System.currentTimeMillis()-start<timeout){
+            String result = jedis.set(lockKey, requestId, SET_IF_NOT_EXIST, SET_WITH_EXPIRE_TIME, expireTime);
+            // jedis.set(lockKey, requestId, new SetParams().nx().ex(expireTime));
+            if (LOCK_SUCCESS.equals(result)){
+                return true;
+            }
         }
         return false;
     }
