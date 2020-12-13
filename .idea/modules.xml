@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/distruLock/distruLock.iml" filepath="$PROJECT_DIR$/distruLock/distruLock.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/handerh-len.iml" filepath="$PROJECT_DIR$/.idea/handerh-len.iml" />
+      <module fileurl="file://$PROJECT_DIR$/redis/redis.iml" filepath="$PROJECT_DIR$/redis/redis.iml" />
     </modules>
   </component>
 </project>

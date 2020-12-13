@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="distruLock" />
+        <module name="redis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="distruLock" target="8" />
+      <module name="redis" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
