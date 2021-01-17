@@ -5,6 +5,9 @@
       <list>
         <option value="$PROJECT_DIR$/distruLock/pom.xml" />
         <option value="$PROJECT_DIR$/redis/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-len/pom.xml" />
+        <option value="$PROJECT_DIR$/design-pattern/pom.xml" />
+        <option value="$PROJECT_DIR$/java-base/pom.xml" />
       </list>
     </option>
   </component>

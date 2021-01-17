@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/design-pattern/design-pattern.iml" filepath="$PROJECT_DIR$/design-pattern/design-pattern.iml" />
       <module fileurl="file://$PROJECT_DIR$/distruLock/distruLock.iml" filepath="$PROJECT_DIR$/distruLock/distruLock.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/handerh-len.iml" filepath="$PROJECT_DIR$/.idea/handerh-len.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java-base/java-base.iml" filepath="$PROJECT_DIR$/java-base/java-base.iml" />
       <module fileurl="file://$PROJECT_DIR$/redis/redis.iml" filepath="$PROJECT_DIR$/redis/redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-len/springboot-len.iml" filepath="$PROJECT_DIR$/springboot-len/springboot-len.iml" />
     </modules>
   </component>
 </project>

@@ -6,13 +6,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="springboot-len" />
+        <module name="design-pattern" />
+        <module name="java-base" />
         <module name="distruLock" />
         <module name="redis" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="design-pattern" target="1.5" />
       <module name="distruLock" target="8" />
+      <module name="java-base" target="7" />
       <module name="redis" target="8" />
+      <module name="springboot-len" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="springboot-len" options="-parameters" />
+    </option>
   </component>
 </project>
