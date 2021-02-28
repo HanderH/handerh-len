@@ -6,6 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/distruLock/distruLock.iml" filepath="$PROJECT_DIR$/distruLock/distruLock.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/handerh-len.iml" filepath="$PROJECT_DIR$/.idea/handerh-len.iml" />
       <module fileurl="file://$PROJECT_DIR$/java-base/java-base.iml" filepath="$PROJECT_DIR$/java-base/java-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatis-3/mybatis.iml" filepath="$PROJECT_DIR$/mybatis-3/mybatis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mybatisDemo/mybatis-demo.iml" filepath="$PROJECT_DIR$/mybatisDemo/mybatis-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/quartz/quartz.iml" filepath="$PROJECT_DIR$/quartz/quartz.iml" />
       <module fileurl="file://$PROJECT_DIR$/redis/redis.iml" filepath="$PROJECT_DIR$/redis/redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/springboot-len/springboot-len.iml" filepath="$PROJECT_DIR$/springboot-len/springboot-len.iml" />
     </modules>
